@@ -2,6 +2,14 @@
 // Scheduled function to automatically sync all states daily
 
 export default async function handler(req, res) {
+  // Kill switch - disable cron if SYNC_ENABLED is set to false
+  if (process.env.SYNC_ENABLED === 'false') {
+    return res.status(200).json({ 
+      message: 'Sync is disabled via SYNC_ENABLED environment variable',
+      enabled: false 
+    });
+  }
+
   // Verify this is a Vercel Cron request
   const authHeader = req.headers.authorization;
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -9,7 +17,7 @@ export default async function handler(req, res) {
   }
 
   const states = [
-    'al', 'ar', 'fl', 'ga', 'ky', 'la', 'ms', 'nc', 'sc', 'tn',
+    'al', 'ar', 'fl', 'ga', 'ky', 'la', 'ms', 'nc', 'sc', 'tn', 
     'tx', 'va', 'wv'
   ];
 
