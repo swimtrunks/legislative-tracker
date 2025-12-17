@@ -1,0 +1,19 @@
+{
+  "name": "legislative-tracker-sync",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Serverless function to sync Plural Policy API data to Airtable for Framer",
+  "main": "api/sync-bills.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "airtable": "^0.12.2",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.1"
+  }
+}
